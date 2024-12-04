@@ -8,6 +8,12 @@ public class ListaCircular<T> {
     private No<T> cauda;
     private int tamanhoLista;
 
+    public ListaCircular(){
+        this.cauda = null;
+        this.cabeca = null;
+        this.tamanhoLista = 0;
+    }
+
     public T get(int index){
         return this.getNo(index).getConteudo();
     }
@@ -24,6 +30,20 @@ public class ListaCircular<T> {
             noAuxiliar = noAuxiliar.getNoProximo();
         }
         return noAuxiliar; 
+    }
+
+    public void add(T conteudo){
+        No<T> novoNo = new No<T>(conteudo);
+        if(this.tamanhoLista == 0){
+            this.cabeca = novoNo;
+            this.cauda = this.cabeca;
+            this.cabeca.setNoProximo(this.cauda);
+        }else{
+            novoNo.setNoProximo(this.cauda);
+            this.cabeca.setNoProximo(novoNo);
+            this.cauda = novoNo;
+        }
+        this.tamanhoLista++;
     }
 
     public void remove(int index){
@@ -50,8 +70,24 @@ public class ListaCircular<T> {
        return this.tamanhoLista == 0 ? true : false;
     }
 
-    public int size(int index){
+    public int size(){
         return this.tamanhoLista;
     }
+
+    @Override
+    public String toString() {
+        String srtRetorno = "";
+
+        No<T> noAuxiliar = this.cauda;
+        for(int i = 0; i < size(); i++){
+            srtRetorno += "[No{conteudo=" + noAuxiliar.getConteudo() + "}]---->";
+            noAuxiliar = noAuxiliar.getNoProximo();
+        }
+        srtRetorno += this.size() != 0 ? "(Retorna ao inicio)" : "[]";
+
+        return srtRetorno;
+    }
+    
+    
 
 }
