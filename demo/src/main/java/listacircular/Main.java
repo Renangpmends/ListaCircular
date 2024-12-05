@@ -1,7 +1,28 @@
 package listacircular;
 
+import listacircular.one.digitalinovation.ListaCircular;
+
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Hello world!");
+
+        ListaCircular<String> minhaLista = new ListaCircular<>();
+
+        minhaLista.add("C0");
+        System.out.println(minhaLista);
+
+        minhaLista.remove(0);
+        System.out.println(minhaLista);
+
+        minhaLista.add("C1");
+        System.out.println(minhaLista);
+
+
+        minhaLista.add("C2");
+        minhaLista.add("C3");
+        System.out.println(minhaLista);
+        System.out.println(minhaLista.get(0));
+        System.out.println(minhaLista);
+
+
     }
 }
